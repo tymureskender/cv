@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tymur Eskender - Curriculum Vitae</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM
+       ============================================================ */
+    :root {
+      --bg:          #FAFAF7;
+      --bg-warm:     #F2EDE4;
+      --bg-card:     #FFFFFF;
+      --text:        #161412;
+      --text-sec:    #6B635C;
+      --text-light:  #9E9690;
+      --accent:      #B85438;
+      --accent-h:    #9C4430;
+      --accent-soft: #E8D0C6;
+      --gold:        #8A6914;
+      --line:        rgba(22,20,18,.10);
+      --line-mid:    rgba(22,20,18,.06);
+      --shadow-sm:   0 2px 16px rgba(22,20,18,.06);
+      --shadow-md:   0 6px 40px rgba(22,20,18,.09);
+      --shadow-lg:   0 12px 64px rgba(22,20,18,.13);
+      --radius:      3px;
+      --fd:          'Cormorant Garant', Georgia, serif;
+      --fb:          'DM Sans', 'Helvetica Neue', sans-serif;
+      --ease:        cubic-bezier(.16,1,.3,1);
+      --t:           .45s var(--ease);
+      --nav:         68px;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--fb);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--accent-soft); color: var(--accent-h); }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+    img { max-width:100%; display:block; }
+    a { color: inherit; }
+
+    /* ============================================================
+       PROGRESS BAR
+       ============================================================ */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), #D4876A);
+      width: 0%;
+      z-index: 200;
+      transition: width .15s ease;
+    }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(20px, 5vw, 72px);
+      z-index: 100;
+      background: rgba(250,250,247,.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s ease, box-shadow .3s ease;
+    }
+
+    nav.scrolled {
+      border-color: var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-brand {
+      font-family: var(--fd);
+      font-size: 1.38rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .nav-brand-dot { color: var(--accent); }
+
+    .nav-list {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-list a {
+      font-size: .76rem;
+      font-weight: 400;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--text-sec);
+      text-decoration: none;
+      position: relative;
+      transition: color .25s ease;
+    }
+
+    .nav-list a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--accent);
+      transition: width .3s ease;
+    }
+
+    .nav-list a:hover,
+    .nav-list a.active { color: var(--accent); }
+    .nav-list a:hover::after,
+    .nav-list a.active::after { width: 100%; }
+
+    .nav-btn {
+      font-family: var(--fb);
+      font-size: .76rem;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--bg);
+      background: var(--text);
+      border: none;
+      padding: 10px 22px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .25s ease;
+    }
+
+    .nav-btn:hover { background: var(--accent); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px; height: 1.5px;
+      background: var(--text);
+      transition: var(--t);
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .drawer {
+      display: none;
+      position: fixed;
+      inset: var(--nav) 0 0 0;
+      background: var(--bg);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+
+    .drawer.open { display:flex; opacity:1; pointer-events:all; }
+
+    .drawer a {
+      font-family: var(--fd);
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--text);
+      text-decoration: none;
+      transition: color .25s ease;
+    }
+
+    .drawer a:hover { color: var(--accent); }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: calc(var(--nav) + 48px) clamp(20px, 5vw, 72px) 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Angled warm panel */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 44%;
+      height: 100%;
+      background: var(--bg-warm);
+      clip-path: polygon(16% 0, 100% 0, 100% 100%, 0% 100%);
+      z-index: 0;
+    }
+
+    /* Subtle grid texture */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line-mid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line-mid) 1px, transparent 1px);
+      background-size: 52px 52px;
+      z-index: 0;
+      pointer-events: none;
+      mask-image: radial-gradient(ellipse at 60% 50%, black 20%, transparent 80%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+      max-width: 1360px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Hero left */
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 28px;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp .8s var(--ease) .15s forwards;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px; height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: var(--fd);
+      font-size: clamp(3.4rem, 8.5vw, 8rem);
+      font-weight: 600;
+      line-height: .92;
+      letter-spacing: -.025em;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(28px);
+      animation: fadeUp .95s var(--ease) .28s forwards;
+    }
+
+    .hero-name .first { display: block; }
+
+    .hero-name .last {
+      display: block;
+      -webkit-text-stroke: 1.5px var(--text);
+      color: transparent;
+    }
+
+    .hero-role {
+      font-family: var(--fd);
+      font-size: clamp(1rem, 2.2vw, 1.4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-sec);
+      margin-bottom: 36px;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp .8s var(--ease) .44s forwards;
+    }
+
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 44px;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp .8s var(--ease) .58s forwards;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: .78rem;
+      color: var(--text-sec);
+      padding: 6px 14px;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      background: var(--bg-card);
+    }
+
+    .chip svg { width:12px; height:12px; color:var(--accent); flex-shrink:0; }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp .8s var(--ease) .72s forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 28px;
+      font-family: var(--fb);
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
+    }
+
+    .btn svg { width: 13px; height: 13px; }
+
+    .btn-dark { background: var(--text); color: var(--bg); }
+    .btn-dark:hover { background: var(--accent); transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Hero right – stat cards */
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      opacity: 0;
+      transform: translateX(32px);
+      animation: fadeLeft 1s var(--ease) .5s forwards;
+    }
+
+    .stat {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 26px 22px;
+      box-shadow: var(--shadow-sm);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .stat:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+    .stat.inv {
+      background: var(--text);
+      border-color: transparent;
+    }
+
+    .stat-n {
+      font-family: var(--fd);
+      font-size: 2.6rem;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .stat-n sup {
+      font-size: 1.1rem;
+      color: var(--accent);
+      vertical-align: super;
+    }
+
+    .stat.inv .stat-n { color: var(--bg); }
+
+    .stat-l {
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-sec);
+    }
+
+    .stat.inv .stat-l { color: rgba(250,250,247,.45); }
+
+    /* Scroll cue */
+    .scroll-cue {
+      position: absolute;
+      bottom: 36px;
+      left: clamp(20px, 5vw, 72px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .7rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      animation: scrollBob 2.4s ease infinite;
+    }
+
+    .scroll-cue::before {
+      content:'';
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, transparent, var(--accent));
+    }
+
+    /* ============================================================
+       SECTION COMMONS
+       ============================================================ */
+    section { padding: clamp(56px, 8vw, 112px) clamp(20px, 5vw, 72px); }
+
+    .wrap { max-width: 1360px; margin: 0 auto; }
+
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 56px;
+      position: relative;
+    }
+
+    .sec-num {
+      font-family: var(--fd);
+      font-size: clamp(4rem, 7.5vw, 7rem);
+      font-weight: 700;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(22,20,18,.07);
+      user-select: none;
+      position: absolute;
+      left: -8px; top: -22px;
+    }
+
+    .sec-title {
+      font-family: var(--fd);
+      font-size: clamp(1.7rem, 3.8vw, 2.8rem);
+      font-weight: 500;
+      line-height: 1.1;
+      position: relative;
+    }
+
+    .sec-title::after {
+      content: '';
+      display: block;
+      width: 36px; height: 2px;
+      background: var(--accent);
+      margin-top: 12px;
+    }
+
+    /* reveal animation */
+    .rv {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s var(--ease);
+    }
+
+    .rv.in { opacity: 1; transform: translateY(0); }
+
+    /* ============================================================
+       PROFILO
+       ============================================================ */
+    .about { background: var(--bg-warm); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .portrait {
+      position: relative;
+      aspect-ratio: 3/4;
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--bg);
+      border: 1px solid var(--line);
+    }
+
+    .portrait-bg {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #EDE8E0, var(--accent-soft));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .portrait-init {
+      font-family: var(--fd);
+      font-size: 3.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      opacity: .55;
+    }
+
+    .portrait-hint {
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    /* decorative corner frame */
+    .portrait::after {
+      content: '';
+      position: absolute;
+      bottom: -8px; right: -8px;
+      width: 55%; height: 38%;
+      border: 1.5px solid var(--accent);
+      opacity: .2;
+      pointer-events: none;
+    }
+
+    .bio {
+      font-family: var(--fd);
+      font-size: clamp(1.05rem, 1.9vw, 1.28rem);
+      font-weight: 300;
+      line-height: 1.78;
+      color: var(--text);
+      margin-bottom: 36px;
+    }
+
+    .bio strong { font-weight: 600; color: var(--accent); }
+
+    .info-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 28px;
+      margin-bottom: 36px;
+    }
+
+    .info-row {
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .info-lbl {
+      font-size: .67rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .info-val {
+      font-size: .88rem;
+      color: var(--text);
+    }
+
+    /* ============================================================
+       TIMELINE (ESPERIENZA + FORMAZIONE)
+       ============================================================ */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+    }
+
+    .col-label {
+      font-size: .68rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 36px;
+    }
+
+    .timeline { position: relative; padding-left: 2px; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+
+    .ti {
+      position: relative;
+      padding-left: 36px;
+      margin-bottom: 46px;
+    }
+
+    .ti:last-child { margin-bottom: 0; }
+
+    .ti-dot {
+      position: absolute;
+      left: -5px; top: 5px;
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      transition: background .25s ease;
+    }
+
+    .ti:hover .ti-dot { background: var(--accent); }
+
+    .ti-period {
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 7px;
+    }
+
+    .ti-role {
+      font-family: var(--fd);
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .ti-place {
+      font-family: var(--fd);
+      font-size: .86rem;
+      font-style: italic;
+      color: var(--text-sec);
+      margin-bottom: 12px;
+    }
+
+    .ti-desc {
+      font-size: .87rem;
+      color: var(--text-sec);
+      line-height: 1.72;
+      max-width: 520px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      font-size: .68rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 11px;
+      border-radius: 100px;
+    }
+
+    /* ============================================================
+       COMPETENZE (dark section)
+       ============================================================ */
+    .skills { background: var(--text); color: var(--bg); }
+
+    .skills .sec-num  { -webkit-text-stroke-color: rgba(250,250,247,.05); }
+    .skills .sec-title::after { background: var(--accent); }
+    .skills .sec-title { color: var(--bg); }
+
+    .skills-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 44px 56px;
+    }
+
+    .sk-group-lbl {
+      font-size: .68rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(250,250,247,.38);
+      margin-bottom: 22px;
+    }
+
+    .sk {
+      margin-bottom: 18px;
+    }
+
+    .sk-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 7px;
+    }
+
+    .sk-name { font-size: .87rem; color: var(--bg); }
+
+    .sk-pct {
+      font-family: var(--fd);
+      font-size: .82rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .sk-bar {
+      height: 2px;
+      background: rgba(250,250,247,.09);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .sk-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #D4876A);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 1.3s var(--ease);
+    }
+
+    /* Languages */
+    .langs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 56px;
+      padding-top: 52px;
+      border-top: 1px solid rgba(250,250,247,.07);
+    }
+
+    .lang {
+      padding: 22px 18px;
+      border: 1px solid rgba(250,250,247,.08);
+      border-radius: 4px;
+      transition: border-color .25s ease, background .25s ease;
+    }
+
+    .lang:hover {
+      border-color: var(--accent);
+      background: rgba(184,84,56,.06);
+    }
+
+    .lang-name {
+      font-family: var(--fd);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--bg);
+      margin-bottom: 3px;
+    }
+
+    .lang-lvl {
+      font-size: .7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ============================================================
+       CERTIFICAZIONI
+       ============================================================ */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .cert {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 26px 22px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+
+    .cert::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s var(--ease);
+    }
+
+    .cert:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-soft);
+    }
+
+    .cert:hover::before { transform: scaleX(1); }
+
+    .cert-ico {
+      width: 38px; height: 38px;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .cert-ico svg { width: 18px; height: 18px; color: var(--accent); }
+
+    .cert-name {
+      font-family: var(--fd);
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .cert-src {
+      font-family: var(--fd);
+      font-size: .83rem;
+      font-style: italic;
+      color: var(--text-sec);
+      margin-bottom: 12px;
+    }
+
+    .cert-date {
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    /* ============================================================
+       CONTATTI
+       ============================================================ */
+    .contact { background: var(--bg-warm); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .c-headline {
+      font-family: var(--fd);
+      font-size: clamp(1.7rem, 3.2vw, 2.6rem);
+      font-weight: 300;
+      line-height: 1.28;
+      margin-bottom: 14px;
+    }
+
+    .c-headline em { font-style: italic; color: var(--accent); }
+
+    .c-sub {
+      font-size: .9rem;
+      color: var(--text-sec);
+      line-height: 1.72;
+      max-width: 360px;
+      margin-bottom: 40px;
+    }
+
+    .c-list { display: flex; flex-direction: column; gap: 18px; }
+
+    .c-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+      transition: color .25s ease;
+    }
+
+    .c-item:hover { color: var(--accent); }
+    .c-item:hover .c-ico { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+    .c-ico {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background .25s ease, color .25s ease, border-color .25s ease;
+    }
+
+    .c-ico svg { width: 17px; height: 17px; }
+
+    .c-info { display: flex; flex-direction: column; }
+
+    .c-lbl {
+      font-size: .67rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .c-val { font-size: .88rem; }
+
+    /* form */
+    .c-form {
+      background: var(--bg-card);
+      padding: 38px;
+      border-radius: 4px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--line);
+    }
+
+    .form-title {
+      font-family: var(--fd);
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .fg { margin-bottom: 18px; }
+
+    .fg label {
+      display: block;
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-sec);
+      margin-bottom: 7px;
+    }
+
+    .fg input,
+    .fg textarea {
+      width: 100%;
+      padding: 11px 15px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      font-family: var(--fb);
+      font-size: .88rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color .25s ease;
+      resize: vertical;
+    }
+
+    .fg input:focus,
+    .fg textarea:focus { border-color: var(--accent); }
+
+    .fg textarea { min-height: 110px; }
+
+    .fg-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .f-submit {
+      width: 100%;
+      margin-top: 6px;
+      padding: 13px;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--fb);
+      font-size: .78rem;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background .25s ease;
+    }
+
+    .f-submit:hover { background: var(--accent); }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      background: var(--text);
+      color: var(--bg);
+      padding: 36px clamp(20px, 5vw, 72px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .f-brand {
+      font-family: var(--fd);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--bg);
+    }
+
+    .f-brand span { color: var(--accent); }
+
+    .f-copy {
+      font-size: .74rem;
+      color: rgba(250,250,247,.35);
+      letter-spacing: .04em;
+    }
+
+    .f-socials { display: flex; gap: 12px; }
+
+    .f-soc {
+      width: 34px; height: 34px;
+      border: 1px solid rgba(250,250,247,.13);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(250,250,247,.45);
+      text-decoration: none;
+      transition: border-color .25s ease, color .25s ease;
+    }
+
+    .f-soc:hover { border-color: var(--accent); color: var(--accent); }
+    .f-soc svg { width: 14px; height: 14px; }
+
+    /* ============================================================
+       KEYFRAMES
+       ============================================================ */
+    @keyframes fadeUp {
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    @keyframes fadeLeft {
+      to { opacity:1; transform:translateX(0); }
+    }
+
+    @keyframes scrollBob {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(7px); }
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 1080px) {
+      .skills-cols { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .langs       { grid-template-columns: 1fr 1fr; }
+      .certs-grid  { grid-template-columns: 1fr 1fr; }
+      .about-grid  { grid-template-columns: 200px 1fr; gap: 44px; }
+      .two-col     { grid-template-columns: 1fr; gap: 56px; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav: 58px; }
+
+      .nav-list, .nav-btn { display: none; }
+      .hamburger { display: flex; }
+      .drawer { display: none; }
+      .drawer.open { display: flex; }
+
+      .hero::before { display: none; }
+      .hero::after  { display: none; }
+      .hero-inner   { grid-template-columns: 1fr; gap: 44px; }
+      .stats        { grid-template-columns: 1fr 1fr; }
+
+      .about-grid  { grid-template-columns: 1fr; }
+      .portrait    { aspect-ratio: 2/1; max-width: 240px; }
+      .info-table  { grid-template-columns: 1fr; }
+
+      .skills-cols { grid-template-columns: 1fr; gap: 28px; }
+      .langs       { grid-template-columns: 1fr 1fr; }
+
+      .certs-grid  { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+      .fg-row      { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       PRINT
+       ============================================================ */
+    @media print {
+      nav, .hamburger, .drawer, .hero-cta, .scroll-cue,
+      .c-form, footer, #progress-bar { display: none !important; }
+
+      body { font-size: 11px; }
+      section { padding: 20px 0; }
+      .hero { min-height: auto; padding: 20px 0; }
+      .hero::before, .hero::after { display: none; }
+      .skills { background: white !important; color: black !important; }
+      .skills .sec-title, .skills .sk-name, .skills .lang-name { color: black !important; }
+      * { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── READING PROGRESS ── -->
+  <div id="progress-bar"></div>
+
+  <!-- ================================================================
+       NAVIGAZIONE
+       ================================================================ -->
+  <nav id="nav">
+    <a href="#inizio" class="nav-brand">Tymur<span class="nav-brand-dot">.</span>Eskender</a>
+
+    <ul class="nav-list">
+      <li><a href="#profilo">Profilo</a></li>
+      <li><a href="#esperienza">Esperienza</a></li>
+      <li><a href="#competenze">Competenze</a></li>
+      <li><a href="#certificazioni">Certificazioni</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+
+    <a href="#contatti" class="nav-btn">///</a>
+
+    <button class="hamburger" id="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- mobile drawer -->
+  <div class="drawer" id="drawer" role="dialog" aria-label="Navigazione mobile">
+    <a href="#profilo" class="d-link">Profilo</a>
+    <a href="#esperienza" class="d-link">Esperienza</a>
+    <a href="#competenze" class="d-link">Competenze</a>
+    <a href="#certificazioni" class="d-link">Certificazioni</a>
+    <a href="#contatti" class="d-link">Contatti</a>
+  </div>
+
+  <!-- ================================================================
+       HERO
+       ================================================================ -->
+  <section class="hero" id="inizio" aria-label="Introduzione">
+    <div class="hero-inner">
+      <!-- testo sinistra -->
+      <div class="hero-text">
+        <p class="hero-eyebrow">Curriculum Vitae&nbsp;·&nbsp;2026</p>
+
+        <h1 class="hero-name">
+          <span class="first">Tymur</span>
+          <span class="last">Eskender</span>
+        </h1>
+
+        <p class="hero-role">Futuro specialista in Commercio &amp; Marketing</p>
+
+        <div class="hero-chips">
+          <span class="chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            Lugano, Svizzera
+          </span>
+          <span class="chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            In formazione
+          </span>
+        </div>
+      </div>
+
+      <!-- cards destra -->
+      <div class="stats">
+        <div class="stat inv">
+          <div class="stat-n">4</div>
+          <div class="stat-l">Lingue parlate</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n">5</div>
+          <div class="stat-l">Certificazioni</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true">Scorri</div>
+  </section>
+
+  <!-- ================================================================
+       01 · PROFILO PROFESSIONALE
+       ================================================================ -->
+  <section class="about" id="profilo">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num" aria-hidden="true">01</div>
+        <h2 class="sec-title">Informazioni personali</h2>
+      </div>
+
+      <div class="about-grid rv">
+        <!-- Portrait placeholder -->
+        <div class="portrait" role="img" aria-label="Foto profilo — sostituire con immagine personale">
+          <div class="portrait-bg">
+            <div class="portrait-init">TE</div>
+          </div>
+        </div>
+
+        <!-- Testo -->
+        <div>
+
+          <div class="info-table">
+            <div class="info-row">
+              <span class="info-lbl">Nome completo</span>
+              <span class="info-val">Tymur Eskender</span>
+            </div>
+            <div class="info-row">
+              <span class="info-lbl">Data di nascita</span>
+              <span class="info-val">17 marzo 2008</span>
+            </div>
+            <div class="info-row">
+              <span class="info-lbl">Indirizzo</span>
+              <span class="info-val">Via Giovanni Maraini 18, 6963 Pregassona</span>
+            </div>
+            <div class="info-row">
+              <span class="info-lbl">Nazionalità</span>
+              <span class="info-val">Ucraina</span>
+            </div>
+            <div class="info-row">
+              <span class="info-lbl">E-mail</span>
+              <span class="info-val">tymureskender@gmail.com &amp; wfs499@student.edu.ti.ch</span>
+            </div>
+            <div class="info-row">
+              <span class="info-lbl">Telefono</span>
+              <span class="info-val">+41 76 298 06 40</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       02 · ESPERIENZA & FORMAZIONE
+       ================================================================ -->
+  <section id="esperienza">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num" aria-hidden="true">02</div>
+        <h2 class="sec-title">Percorso Professionale</h2>
+      </div>
+
+      <div class="two-col">
+        <!-- ESPERIENZA LAVORATIVA -->
+        <div class="rv">
+          <div class="col-label">Stage effettuati</div>
+          <div class="timeline">
+
+            <div class="ti">
+              <div class="ti-dot"></div>
+              <div class="ti-period">2023 — 5 GIORNI</div>
+              <h3 class="ti-role">Goodcode SA - Sviluppatore</h3>
+              <div class="ti-place">Goodcode SA · Bioggio</div>
+              <p class="ti-desc">Sviluppo dei app e pagine web, imparato com'è strutturata una vera azienda IT e coma lavorano in team.</p>
+              <div class="tags">
+                <span class="tag">Sviluppo WEB</span>
+                <span class="tag">Lavoro in squadra</span>
+              </div>
+            </div>
+
+            <div class="ti">
+              <div class="ti-dot"></div>
+              <div class="ti-period">2023 — 1 GIORNO</div>
+              <h3 class="ti-role">SUPSI - Dipartimento Tecnologie Innovative</h3>
+              <div class="ti-place">SUPSI · Lugano</div>
+              <p class="ti-desc">Reparto di Gestione Dispositivi, visto com'è strutturata l'ecosistema di SUPSI.</p>
+              <div class="tags">
+                <span class="tag">Reparto IT</span>
+                <span class="tag">Struttura DIgitale</span>
+              </div>
+            </div>
+
+            <div class="ti">
+              <div class="ti-dot"></div>
+              <div class="ti-period">2023 - 1 GIORNO</div>
+              <h3 class="ti-role">Tradesystem IT Solutions Sagl - Sviluppatore</h3>
+              <div class="ti-place">Azienda IT · Gravesano</div>
+              <div class="tags">
+                <span class="tag">Soluzioni IT</span>
+                <span class="tag">Creazione delle pagine WEB</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- FORMAZIONE -->
+        <div class="rv" style="transition-delay:.14s">
+          <div class="col-label">Formazione</div>
+          <div class="timeline">
+
+            <div class="ti">
+              <div class="ti-dot"></div>
+              <div class="ti-period">2027 — 2028</div>
+              <h3 class="ti-role">Centro Professionale di Commercio</h3>
+              <div class="ti-place"> Maturità Professionale · MPES · Scuola Professionale, Lugano</div>
+              <p class="ti-desc">Scuola Professionale Commerciale</p>
+              <div class="tags">
+                <span class="tag">Lingue</span>
+                <span class="tag">Economia</span>
+                <span class="tag">Servizi</span>
+              </div>
+            </div>
+
+            <div class="ti">
+              <div class="ti-dot"></div>
+              <div class="ti-period">2024 — 2027</div>
+              <h3 class="ti-role">Centro Professionale di Commercio</h3>
+              <div class="ti-place"> Commercio &amp; Contabilità · AFC · Scuola Professionale, Lugano</div>
+              <p class="ti-desc">Scuola Professionale Commerciale</p>
+              <div class="tags">
+                <span class="tag">Lingue</span>
+                <span class="tag">Commercio</span>
+                <span class="tag">Marketing</span>
+              </div>
+            </div>
+
+            <div class="ti">
+              <div class="ti-dot"></div>
+              <div class="ti-period">2023 — 2024</div>
+              <h3 class="ti-role">Pretirocinio di Integrazione</h3>
+              <div class="ti-place">Comunicazione &amp; Integrazione · PTI, Trevano</div>
+              <p class="ti-desc">Scuola Integrazionale per la Società Svizzera</p>
+              <div class="tags">
+                <span class="tag">Lingue</span>
+                <span class="tag">Integrazione</span>
+              </div>
+            </div>
+
+            <div class="ti">
+              <div class="ti-dot"></div>
+              <div class="ti-period">2022— 2023</div>
+              <h3 class="ti-role">Diploma delle scuole medie in Svizzera</h3>
+              <div class="ti-place">Scuola Media · Barbengo</div>
+              <div class="tags">
+                <span class="tag">Conoscenze basi</span>
+              </div>
+            </div>
+
+            <div class="ti">
+              <div class="ti-dot"></div>
+              <div class="ti-period">2017 — 2022</div>
+              <h3 class="ti-role">Diploma delle scuole medie in Ucraina</h3>
+              <div class="ti-place">Scuola Media · Odessa</div>
+              <div class="tags">
+                <span class="tag">Conoscenze basi</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       03 · COMPETENZE
+       ================================================================ -->
+  <section class="skills" id="competenze">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num" aria-hidden="true">03</div>
+        <h2 class="sec-title">Competenze</h2>
+      </div>
+
+      <div class="skills-cols rv" id="skillsGrid">
+
+        <div class="sk-group">
+          <div class="sk-group-lbl">Soft Skills</div>
+
+          <div class="sk">
+            <div class="sk-head"><span class="sk-name">Comunicazione Strategica</span><span class="sk-pct">30-40%</span></div>
+            <div class="sk-bar"><div class="sk-fill" data-w="35"></div></div>
+          </div>
+          <div class="sk">
+            <div class="sk-head"><span class="sk-name">Gestione del Team</span><span class="sk-pct">25-30%</span></div>
+            <div class="sk-bar"><div class="sk-fill" data-w="27"></div></div>
+          </div>
+          <div class="sk">
+            <div class="sk-head"><span class="sk-name">Problem Solving</span><span class="sk-pct">30-40%</span></div>
+            <div class="sk-bar"><div class="sk-fill" data-w="35"></div></div>
+          </div>
+          <div class="sk">
+            <div class="sk-head"><span class="sk-name">Project Management</span><span class="sk-pct">40-50%</span></div>
+            <div class="sk-bar"><div class="sk-fill" data-w="45"></div></div>
+          </div>
+        </div>
+
+        <div class="sk-group">
+          <div class="sk-group-lbl">Hard Skills</div>
+
+          <div class="sk">
+            <div class="sk-head"><span class="sk-name">Programmazione Web</span><span class="sk-pct">HTML + CSS + JS</span></div>
+            <div class="sk-bar"><div class="sk-fill" data-w="95"></div></div>
+          </div>
+          <div class="sk">
+            <div class="sk-head"><span class="sk-name">Contabilità e Finanza</span><span class="sk-pct">90%</span></div>
+            <div class="sk-bar"><div class="sk-fill" data-w="90"></div></div>
+          </div>
+        </div>
+
+      </div><!-- / skills-cols -->
+
+      <!-- Lingue -->
+      <div class="langs rv">
+        <div class="lang">
+          <div class="lang-name">Italiano</div>
+          <div class="lang-lvl">Fluente · B2-C1</div>
+        </div>
+        <div class="lang">
+          <div class="lang-name">Inglese</div>
+          <div class="lang-lvl">Avanzato · A2-B1</div>
+        </div>
+        <div class="lang">
+          <div class="lang-name">Tedesco</div>
+          <div class="lang-lvl">Base · A2</div>
+        </div>
+        <div class="lang">
+          <div class="lang-name">Ucraino / Russo</div>
+          <div class="lang-lvl">Madrelingua · C2</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================================================
+       04 · CERTIFICAZIONI
+       ================================================================ -->
+  <section id="certificazioni">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num" aria-hidden="true">04</div>
+        <h2 class="sec-title">Certificazioni</h2>
+      </div>
+
+      <div class="certs-grid">
+
+        <div class="cert rv">
+          <div class="cert-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+          </div>
+          <div class="cert-name">Maturità professionale - MP2 </div>
+          <div class="cert-src">Centro Professionale Commerciale · MP · Lugano</div>
+          <div class="cert-date">Verrà rilasciata: Giugno 2028</div>
+        </div>
+
+        <div class="cert rv">
+          <div class="cert-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+          </div>
+          <div class="cert-name">Attestato Federale di Capacità - Commerciale</div>
+          <div class="cert-src">Centro Professionale Commerciale · SMC · Lugano</div>
+          <div class="cert-date">Verrà rilasciata: Giugno 2027</div>
+        </div>
+
+        <div class="cert rv" style="transition-delay:.16s">
+          <div class="cert-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+          </div>
+          <div class="cert-name">Certificato di Pretirocinio di Integrazione</div>
+          <div class="cert-src">PTI · Trevano</div>
+          <div class="cert-date">Rilasciata: Giugno 2024</div>
+        </div>
+
+        <div class="cert rv" style="transition-delay:.16s">
+          <div class="cert-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+          </div>
+          <div class="cert-name">Certificato di Scuola Media - Svizzero</div>
+          <div class="cert-src">Scuola Media · Barbengo</div>
+          <div class="cert-date">Rilasciata: Giugno 2023</div>
+        </div>
+
+        <div class="cert rv" style="transition-delay:.12s">
+          <div class="cert-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+          </div>
+          <div class="cert-name">Certificato di Scuola Media - Ucraino</div>
+          <div class="cert-src">Scuola Media · Odessa</div>
+          <div class="cert-date">Rilasciata: Maggio 2022</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       05 · CONTATTI
+       ================================================================ -->
+  <section class="contact" id="contatti">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num" aria-hidden="true">05</div>
+        <h2 class="sec-title">Contatti</h2>
+      </div>
+
+      <div class="contact-grid">
+        <!-- info sinistra -->
+        <div class="rv">
+
+          <div class="c-list">
+            <a href="mailto:tymureskender@gmail.com" class="c-item">
+              <div class="c-ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div class="c-info">
+                <span class="c-lbl">E-mail personale</span>
+                <span class="c-val">tymureskender@gmail.com</span>
+              </div>
+            </a>
+
+            <a href="mailto:wfs499@student.edu.ti.ch" class="c-item">
+              <div class="c-ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div class="c-info">
+                <span class="c-lbl">E-mail scolastica</span>
+                <span class="c-val">wfs499@student.edu.ti.ch</span>
+              </div>
+            </a>
+
+            <a href="tel:+41762980640" class="c-item">
+              <div class="c-ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              </div>
+              <div class="c-info">
+                <span class="c-lbl">Telefono</span>
+                <span class="c-val">+41 76 298 06 40</span>
+              </div>
+            </a>
+
+            <span class="c-item">
+              <div class="c-ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div class="c-info">
+                <span class="c-lbl">Località</span>
+                <span class="c-val">Pregassona, Ticino, Svizzera</span>
+              </div>
+            </span>
+
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FOOTER
+       ================================================================ -->
+  <footer>
+    <div class="f-brand">Tymur<span>.</span>Eskender</div>
+
+    <p class="f-copy">© 2026 Tymur Eskender · Tutti i diritti riservati</p>
+
+  </footer>
+
+  <!-- ================================================================
+       JAVASCRIPT
+       ================================================================ -->
+  <script>
+    /* ---------- Reading progress ---------- */
+    const bar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const total = document.body.scrollHeight - window.innerHeight;
+      bar.style.width = (window.scrollY / total * 100) + '%';
+    }, { passive: true });
+
+    /* ---------- Nav scroll style ---------- */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 24);
+    }, { passive: true });
+
+    /* ---------- Hamburger / Drawer ---------- */
+    const burger  = document.getElementById('burger');
+    const drawer  = document.getElementById('drawer');
+
+    burger.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    document.querySelectorAll('.d-link').forEach(l => {
+      l.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* ---------- Scroll-reveal ---------- */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('in');
+      });
+    }, { threshold: 0.10 });
+
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+    /* ---------- Skill bars (triggered on skills section) ---------- */
+    const skillsEl = document.getElementById('skillsGrid');
+    const barIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.sk-fill').forEach(f => {
+            setTimeout(() => { f.style.width = f.dataset.w + '%'; }, 350);
+          });
+          barIO.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    if (skillsEl) barIO.observe(skillsEl);
+
+    /* ---------- Active nav highlight ---------- */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-list a');
+
+    const activeIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(l => {
+            l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => activeIO.observe(s));
+
+  </script>
+
+</body>
+</html>
